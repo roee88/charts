@@ -87,3 +87,15 @@ isRazeeEnabled checks if razee configuration is enabled
 true
 {{- end -}}
 {{- end }}
+
+{{/*
+Detect the version of cert manager crd that is installed
+Defaults to cert-manager.io/v1alpha2 
+*/}}
+{{- define "m4d.certManagerApiVersion" -}}
+{{- if (.Capabilities.APIVersions.Has "certmanager.k8s.io/v1alpha1") -}}
+certmanager.k8s.io/v1alpha1
+{{- else  -}}
+cert-manager.io/v1alpha2
+{{- end -}}
+{{- end -}}
